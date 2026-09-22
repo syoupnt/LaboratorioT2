@@ -55,6 +55,22 @@ def mostrar_menu_consulta():
     print('| 5. Otro        |')
     print('------------------' + RESET)
 
+def asignar_prioridad(consulta):
+    # Define la prioridad según el tipo de atención solicitado.
+    match consulta:
+        case 'Matrícula':
+            return 'MUY ALTA'
+        case 'Pagos':
+            return 'ALTA'
+        case 'Plataforma':
+            return 'MEDIA'
+        case 'Constancia':
+            return 'BAJA'
+        case 'Otro':
+            return 'VARIABLE'
+        case _:
+            raise ValueError('Tipo de consulta invalida')
+
 print(CYAN + 'Sistema de orientación y registro de atenciones para el módulo de soporte académico\n' + RESET)
 
 def validar_texto(texto):
@@ -70,6 +86,7 @@ for i in range(5):
         codigo = pedir_codigo()
         nombre = pedir_nombre()
         consulta = pedir_consulta()
+        prioridad = asignar_prioridad(consulta)
         descripcion = pedir_descripcion()
     except Exception as e:
         print(f'\n{RED}ERROR: {e}{RESET}\n')
