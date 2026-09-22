@@ -19,6 +19,8 @@ def pedir_nombre():
     return nombre
 
 def pedir_consulta():
+    # Muestra las opciones y convierte la selección en un tipo de consulta.
+    mostrar_menu_consulta()
     consulta = input(f'{YELLOW}Ingrese el tipo de consulta (1-5):{RESET} ')
 
     match consulta:
@@ -38,6 +40,18 @@ def pedir_consulta():
 def pedir_descripcion():
     descripcion = input(f'{YELLOW}Ingrese la descripción de la consulta:{RESET} ')
     return descripcion
+
+def mostrar_menu_consulta():
+    print(GREEN + 'LISTA DE TIPOS DE CONSULTA')
+    print('------------------')
+    print('| 1. Matrícula   |')
+    print('| 2. Pagos       |')
+    print('| 3. Constancia  |')
+    print('| 4. Plataforma  |')
+    print('| 5. Otro        |')
+    print('------------------' + RESET)
+
+print(CYAN + 'Sistema de orientación y registro de atenciones para el módulo de soporte académico\n' + RESET)
 
 print(CYAN + 'Sistema de orientación y registro de atenciones para el módulo de soporte académico\n' + RESET)
 
