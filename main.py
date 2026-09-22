@@ -8,6 +8,7 @@ RESET   = '\033[39m'
 # Solicita y valida los datos básicos del estudiante.
 def pedir_codigo():
     codigo = input(f'{YELLOW}Ingrese el código del estudiante (N00XXXXXX):{RESET} N00')
+    validar_texto(codigo)
 
     if len(codigo) != 6:
         raise ValueError('Longitud incorrecta del código')
@@ -16,12 +17,14 @@ def pedir_codigo():
 
 def pedir_nombre():
     nombre = input(f'{YELLOW}Ingrese el nombre del estudiante:{RESET} ')
+    validar_texto(nombre)
     return nombre
 
 def pedir_consulta():
     # Muestra las opciones y convierte la selección en un tipo de consulta.
     mostrar_menu_consulta()
     consulta = input(f'{YELLOW}Ingrese el tipo de consulta (1-5):{RESET} ')
+    validar_texto(consulta)
 
     match consulta:
         case '1':
@@ -39,6 +42,7 @@ def pedir_consulta():
 
 def pedir_descripcion():
     descripcion = input(f'{YELLOW}Ingrese la descripción de la consulta:{RESET} ')
+    validar_texto(descripcion)
     return descripcion
 
 def mostrar_menu_consulta():
@@ -53,7 +57,10 @@ def mostrar_menu_consulta():
 
 print(CYAN + 'Sistema de orientación y registro de atenciones para el módulo de soporte académico\n' + RESET)
 
-print(CYAN + 'Sistema de orientación y registro de atenciones para el módulo de soporte académico\n' + RESET)
+def validar_texto(texto):
+    # Evita que un campo obligatorio quede vacío.
+    if len(texto) == 0:
+        raise ValueError('El campo no puede dejarse vacío')
 
 # Registra cinco formularios de consulta durante la ejecución.
 for i in range(5):
