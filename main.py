@@ -71,12 +71,18 @@ def asignar_prioridad(consulta):
         case _:
             raise ValueError('Tipo de consulta invalida')
 
-print(CYAN + 'Sistema de orientación y registro de atenciones para el módulo de soporte académico\n' + RESET)
-
 def validar_texto(texto):
     # Evita que un campo obligatorio quede vacío.
     if len(texto) == 0:
         raise ValueError('El campo no puede dejarse vacío')
+
+def mostrar_resumen(i, codigo, nombre, consulta, prioridad, descripcion):
+    print(GREEN + f'RESUMEN DE LA CONSULTA #{i}')
+    print(f'[ESTUDIANTE]  Código: {RESET + codigo + GREEN}, Nombre: {RESET + nombre + GREEN}')
+    print(f'[CONSULTA]    Tipo: {RESET + consulta + GREEN}, Prioridad: {RESET + prioridad + GREEN}')
+    print(f'[DESCRIPCIÓN] {RESET + descripcion}\n')
+
+print(CYAN + 'Sistema de orientación y registro de atenciones para el módulo de soporte académico\n' + RESET)
 
 # Registra cinco formularios de consulta durante la ejecución.
 for i in range(5):
@@ -88,5 +94,8 @@ for i in range(5):
         consulta = pedir_consulta()
         prioridad = asignar_prioridad(consulta)
         descripcion = pedir_descripcion()
+
+        print()
+        mostrar_resumen(i+1, codigo, nombre, consulta, prioridad, descripcion)
     except Exception as e:
         print(f'\n{RED}ERROR: {e}{RESET}\n')
