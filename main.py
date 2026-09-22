@@ -5,8 +5,50 @@ YELLOW  = '\033[33m'
 CYAN    = '\033[36m'
 RESET   = '\033[39m'
 
+# Solicita y valida los datos básicos del estudiante.
+def pedir_codigo():
+    codigo = input(f'{YELLOW}Ingrese el código del estudiante (N00XXXXXX):{RESET} N00')
+
+    if len(codigo) != 6:
+        raise ValueError('Longitud incorrecta del código')
+
+    return codigo
+
+def pedir_nombre():
+    nombre = input(f'{YELLOW}Ingrese el nombre del estudiante:{RESET} ')
+    return nombre
+
+def pedir_consulta():
+    consulta = input(f'{YELLOW}Ingrese el tipo de consulta (1-5):{RESET} ')
+
+    match consulta:
+        case '1':
+            return 'Matrícula'
+        case '2':
+            return 'Pagos'
+        case '3':
+            return 'Constancia'
+        case '4':
+            return 'Plataforma'
+        case '5':
+            return 'Otro'
+        case _:
+            raise ValueError('Tipo de consulta invalida')
+
+def pedir_descripcion():
+    descripcion = input(f'{YELLOW}Ingrese la descripción de la consulta:{RESET} ')
+    return descripcion
+
 print(CYAN + 'Sistema de orientación y registro de atenciones para el módulo de soporte académico\n' + RESET)
 
 # Registra cinco formularios de consulta durante la ejecución.
 for i in range(5):
     print(YELLOW + f'[Formulario de Consulta #{i+1}]' + RESET)
+
+    try:
+        codigo = pedir_codigo()
+        nombre = pedir_nombre()
+        consulta = pedir_consulta()
+        descripcion = pedir_descripcion()
+    except Exception as e:
+        print(f'\n{RED}ERROR: {e}{RESET}\n')
